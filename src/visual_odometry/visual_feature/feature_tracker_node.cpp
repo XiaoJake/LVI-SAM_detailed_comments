@@ -307,12 +307,12 @@ void lidar_callback(const sensor_msgs::PointCloud2ConstPtr& laser_msg)
     // TODO: transform to IMU body frame
     // 4. offset T_lidar -> T_camera 
     // 4. 将雷达点云转换至相机坐标系
-    pcl::PointCloud<PointType>::Ptr laser_cloud_offset(new pcl::PointCloud<PointType>());
-    Eigen::Affine3f transOffset = pcl::getTransformation(L_C_TX, L_C_TY, L_C_TZ, L_C_RX, L_C_RY, L_C_RZ);//雷达到相机的外参
-    // 使用transOffset对laser_cloud_in转换，存放在laser_cloud_offset
-    pcl::transformPointCloud(*laser_cloud_in, *laser_cloud_offset, transOffset);
-    // 旋转后，重新放回lase_cloud_in
-    *laser_cloud_in = *laser_cloud_offset;
+    // pcl::PointCloud<PointType>::Ptr laser_cloud_offset(new pcl::PointCloud<PointType>());
+    // Eigen::Affine3f transOffset = pcl::getTransformation(L_C_TX, L_C_TY, L_C_TZ, L_C_RX, L_C_RY, L_C_RZ);//雷达到相机的外参
+    // // 使用transOffset对laser_cloud_in转换，存放在laser_cloud_offset
+    // pcl::transformPointCloud(*laser_cloud_in, *laser_cloud_offset, transOffset);
+    // // 旋转后，重新放回lase_cloud_in
+    // *laser_cloud_in = *laser_cloud_offset;
 
     // 5. transform new cloud into global odom frame
     // 5. 将雷达点云转换为全局里程计坐标系
